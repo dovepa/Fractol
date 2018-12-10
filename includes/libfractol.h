@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 20:20:26 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/06 09:37:03 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/09 11:53:53 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define WIN_WIDTH		1000
 # define WIN_HEIGHT		800
 # define DEFAULTC		0xFFFFFF
+# define JNBR			5
+# define MNBR			10
+# define BNBR			11
 # define THREADSTORE	4
 
 /*
@@ -73,8 +76,8 @@ typedef	struct		s_manda
 {
 	double			x;
 	double			y;
-	double				ys;
-	double				xs;
+	double			ym;
+	double			xm;
 	double			xi;
 	double			yi;
 	double			color;
@@ -97,6 +100,7 @@ typedef	struct		s_val
 
 typedef	struct		s_fract
 {
+	int				fct;
 	t_manda			*mna;
 	t_val			*val;
 	void			*mlx_ptr;
@@ -109,11 +113,26 @@ typedef	struct		s_fract
 **	Functions
 */
 
-
+int ft_key(int key, t_fract *fract);
+int ft_mouse(int x, int y, t_fract *fract);
+int ft_exit(t_fract *fract);
+int	ft_burningship(t_fract *fract);
 int	ft_inimg(t_fract *fract);
 int	ft_imgdel(t_fract *fract);
 int	ft_julia(t_fract *fract);
+int	ft_findft(t_fract *fract);
 int	ft_mandelbrot(t_fract *fract);
 void	ft_pixel(unsigned int *data, int x, int y, unsigned int color);
 int		ft_init(char *title, t_fract *fract);
+int		ft_imgdel(t_fract *fract);
+t_fract		*ft_infract(t_fract *fract);
+int		ft_inimg(t_fract *fract);
+int		ft_init(char *title, t_fract *fract);
+
+
+
+
+
+
+
 #endif

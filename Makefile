@@ -6,7 +6,7 @@
 #    By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/07 12:54:37 by dpalombo          #+#    #+#              #
-#    Updated: 2018/12/03 09:51:14 by dpalombo         ###   ########.fr        #
+#    Updated: 2018/12/09 11:54:07 by dpalombo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 
 # ------------------------------------ SRC PROG ------------------------------------
-SRC		= main.c mandelbrot.c julia.c
+SRC		= main.c mandelbrot.c julia.c burningship.c event.c colors.c img.c
 
 OBJFILE	= obj/
 SRCFILE	= src/
