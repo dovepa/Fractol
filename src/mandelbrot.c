@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:46:14 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/13 00:51:33 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/13 14:01:49 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ int	ft_mandelbrot(t_fract *fract)
 {
 	if (ft_inimg(fract) == 1)
 		return (1);
-	/////////////////////////// pas touche;
-	// fract->val->xmin = -2.1 + fract->mna->x;
-	// fract->val->xmax = 0.6 - fract->mna->x;
-	// fract->val->ymin = -1.4 - fract->mna->y;
-	// fract->val->ymax = 1.2  + fract->mna->y;
-
 	fract->val->x = 0;
 	fract->val->y = 0;
 	while(fract->val->x < WIN_WIDTH)
@@ -37,9 +31,9 @@ int	ft_mandelbrot(t_fract *fract)
 			while (fract->val->z.r*fract->val->z.r + fract->val->z.i*fract->val->z.i < 4 && \
 			fract->val->i < fract->mna->imax )
 			{
-				double tmp = fract->val->z.r;
+				fract->val->tmp = fract->val->z.r;
 				fract->val->z.r = fract->val->z.r*fract->val->z.r - fract->val->z.i*fract->val->z.i + fract->val->c.r;
-				fract->val->z.i =  2 * fract->val->z.i*tmp + fract->val->c.i;
+				fract->val->z.i =  2 * fract->val->z.i* fract->val->tmp + fract->val->c.i;
 				fract->val->i++;
 			}
 			ft_pixel(fract->img->data, fract->val->x, fract->val->y, ft_colorpx(fract));
@@ -48,8 +42,6 @@ int	ft_mandelbrot(t_fract *fract)
 		fract->val->x++;
 		fract->val->y = 0;
 	}
-
-	/////////////////////////// pas touche;
 	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->img->img_ptr, 0, 0);
 	ft_imgdel(fract);
 	return(0);

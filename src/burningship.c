@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 01:59:11 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/13 00:44:34 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/13 14:01:38 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	ft_burningship(t_fract *fract)
 			while (fract->val->z.r*fract->val->z.r + fract->val->z.i*fract->val->z.i < 4 && \
 			fract->val->i < fract->mna->imax )
 			{
-				double tmp = fract->val->z.r;
+				fract->val->tmp = fract->val->z.r;
 				fract->val->z.r = fract->val->z.r*fract->val->z.r - fract->val->z.i*fract->val->z.i + fract->val->c.r;
-				fract->val->z.i = 2* fabs(fract->val->z.i*tmp) + fract->val->c.i;
+				fract->val->z.i = 2* fabsl(fract->val->z.i* fract->val->tmp) + fract->val->c.i;
 				fract->val->i++;
 			}
 			ft_pixel(fract->img->data, fract->val->x, fract->val->y, ft_colorpx(fract));

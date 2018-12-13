@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 02:04:06 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/12 21:28:06 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/13 11:47:12 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static int		ft_pixel_gr(int colorstart, int colorend, int i, int imax, t_fract *
 	int		colorresult;
 
 	sn = i - log(log(fract->val->z.r * fract->val->z.r + fract->val->z.i * fract->val->z.i))/log(2.0);
-	if (sn == 0)
-		return (colorend);
+	if (i == 0)
+		return (WHITE);
 	else if (sn == imax)
 		return (0x000000);
 	else

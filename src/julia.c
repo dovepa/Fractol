@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 22:54:58 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/13 00:51:57 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/13 14:01:32 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void ft_juliac(t_fract *fract)
 	{
 		while(fract->val->y < WIN_HEIGHT)
 		{
-			fract->val->c.r = fract->mna->xm;
-			fract->val->c.i = fract->mna->ym;
+			fract->val->c.r = fract->mna->xm ; //+ (((fract->mna->x) / (((fract->val->xmin - fract->val->xmax)) / 2)) / -2);
+			fract->val->c.i = fract->mna->ym ; // + (((fract->mna->y) / (((fract->val->ymin - fract->val->ymax))/ 2)) / -2);
 			fract->val->z.r = fract->val->x / fract->mna->zoom  + fract->val->xmin + fract->mna->x;
 			fract->val->z.i = fract->val->y / fract->mna->zoom  + fract->val->ymin - fract->mna->y;
 			fract->val->i =	0;
@@ -27,9 +27,9 @@ static void ft_juliac(t_fract *fract)
 			while (fract->val->z.r*fract->val->z.r + fract->val->z.i*fract->val->z.i < 4 && \
 			fract->val->i < fract->mna->imax )
 			{
-				double tmp = fract->val->z.r;
+				fract->val->tmp = fract->val->z.r;
 				fract->val->z.r = fract->val->z.r*fract->val->z.r - fract->val->z.i*fract->val->z.i + fract->val->c.r;
-				fract->val->z.i = 2*fract->val->z.i*tmp + fract->val->c.i;
+				fract->val->z.i = 2*fract->val->z.i* fract->val->tmp + fract->val->c.i;
 				fract->val->i++;
 			}
 			ft_pixel(fract->img->data, fract->val->x, fract->val->y, ft_colorpx(fract));

@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 20:20:26 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/13 01:15:21 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/13 17:45:17 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 # define WIN_WIDTH		1000
 # define WIN_HEIGHT		800
-# define DWIN_WIDTH		500
-# define DWIN_HEIGHT	400
+# define DWIN_WIDTH		500.0
+# define DWIN_HEIGHT	400.0
 # define DEFAULTC		0xFFFFFF
 # define JNBR			5
 # define MNBR			10
@@ -47,7 +47,7 @@
 # define MORE_KEY		69
 # define LESS_KEY		78
 # define C_COLOR		8
-# define R_ROTATE		15
+# define R_KEY			15
 # define KING			40
 # define Q_KEY			12
 # define W_KEY			13
@@ -81,10 +81,11 @@ typedef	struct		s_manda
 {
 	double			x;
 	double			y;
+	double			xl;
+	double			yl;
+	int				button;
 	double			ym;
 	double			xm;
-	double			xi;
-	double			yi;
 	int				color;
 	double			imax;
 	double			zoom;
@@ -92,15 +93,16 @@ typedef	struct		s_manda
 
 typedef	struct		s_val
 {
-	double				y;
-	double				x;
-	double				i;
-	double				xmin;
-	double				xmax;
-	double				ymax;
-	double				ymin;
-	t_cp				z;
-	t_cp				c;
+	double			y;
+	double			x;
+	double			i;
+	double			xmin;
+	double			xmax;
+	double			ymax;
+	double			ymin;
+	double 			tmp;
+	t_cp			z;
+	t_cp			c;
 }					t_val;
 
 typedef	struct		s_fract
@@ -137,7 +139,7 @@ int ft_colorpx(t_fract *fract);
 int		ft_scroll(int s, int x, int y, t_fract *fract);
 int	ft_tricorn(t_fract *fract);
 int ft_movearrow(int key, t_fract *fract);
-
+void	ft_initval(t_fract *fract);
 
 
 #endif

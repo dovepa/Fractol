@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 18:31:48 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/13 01:36:29 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/13 17:45:54 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,7 @@ int	main(int argc, char **argv)
 		return (ft_strerror("\x1b[1m\x1b[41m  --- Mlx init error --- \x1b[0m"));
 
 	ft_help();
-	if (fract->fct == JNBR)
-	{
-		fract->val->xmin = -1.7;
-		fract->val->xmax = 2.0;
-		fract->val->ymin = -1.4;
-		fract->val->ymax = 1.2;
-	}
-	else
-	{
-		fract->val->xmin = -2.1;
-		fract->val->xmax = 0.6;
-		fract->val->ymin = -1.4;
-		fract->val->ymax = 1.2;
-	}
+	ft_initval(fract);
 	ft_findft(fract);
 	mlx_mouse_hook(fract->win_ptr, ft_scroll, fract);
 	mlx_key_hook(fract->win_ptr, ft_key, fract);
