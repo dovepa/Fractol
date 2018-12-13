@@ -6,7 +6,7 @@
 #    By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/07 12:54:37 by dpalombo          #+#    #+#              #
-#    Updated: 2018/12/09 11:54:07 by dpalombo         ###   ########.fr        #
+#    Updated: 2018/12/12 23:51:03 by dpalombo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 
 # ------------------------------------ SRC PROG ------------------------------------
-SRC		= main.c mandelbrot.c julia.c burningship.c event.c colors.c img.c
+SRC		= main.c mandelbrot.c julia.c burningship.c event.c colors.c img.c tricorn.c
 
 OBJFILE	= obj/
 SRCFILE	= src/
@@ -57,7 +57,7 @@ DEPS	= libfractol.h
 SRCLIBFT	= libft/
 LIB_FT		= $(addprefix $(SRCLIBFT),libft.a)
 INCLIBFT	= -I libft
-LIB_FT_LINK	= -L libft -l ft -l pthread 
+LIB_FT_LINK	= -L libft -l ft -l pthread
 
 # --------------------------------------- MLX --------------------------------------
 

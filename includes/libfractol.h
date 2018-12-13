@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 20:20:26 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/09 11:53:53 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/13 01:15:21 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,21 @@
 
 # define WIN_WIDTH		1000
 # define WIN_HEIGHT		800
+# define DWIN_WIDTH		500
+# define DWIN_HEIGHT	400
 # define DEFAULTC		0xFFFFFF
 # define JNBR			5
 # define MNBR			10
 # define BNBR			11
+# define TNBR			7
 # define THREADSTORE	4
 
 /*
 **	Keyboard and Colors
 */
 
+# define SCROLL_A		4
+# define SCROLL_B		5
 # define ESC_KEY		53
 # define UP_KEY			126
 # define DOWN_KEY		125
@@ -80,7 +85,7 @@ typedef	struct		s_manda
 	double			xm;
 	double			xi;
 	double			yi;
-	double			color;
+	int				color;
 	double			imax;
 	double			zoom;
 }					t_manda;
@@ -90,10 +95,10 @@ typedef	struct		s_val
 	double				y;
 	double				x;
 	double				i;
-	double				xl;
-	double				xr;
-	double				yt;
-	double				yb;
+	double				xmin;
+	double				xmax;
+	double				ymax;
+	double				ymin;
 	t_cp				z;
 	t_cp				c;
 }					t_val;
@@ -128,10 +133,10 @@ int		ft_imgdel(t_fract *fract);
 t_fract		*ft_infract(t_fract *fract);
 int		ft_inimg(t_fract *fract);
 int		ft_init(char *title, t_fract *fract);
-
-
-
-
+int ft_colorpx(t_fract *fract);
+int		ft_scroll(int s, int x, int y, t_fract *fract);
+int	ft_tricorn(t_fract *fract);
+int ft_movearrow(int key, t_fract *fract);
 
 
 

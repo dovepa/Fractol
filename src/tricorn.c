@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   tricorn.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/11 11:46:14 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/13 00:51:33 by dpalombo         ###   ########.fr       */
+/*   Created: 2018/12/12 23:48:56 by dpalombo          #+#    #+#             */
+/*   Updated: 2018/12/13 00:51:40 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfractol.h"
 
-int	ft_mandelbrot(t_fract *fract)
+int	ft_tricorn(t_fract *fract)
 {
 	if (ft_inimg(fract) == 1)
 		return (1);
@@ -39,7 +39,7 @@ int	ft_mandelbrot(t_fract *fract)
 			{
 				double tmp = fract->val->z.r;
 				fract->val->z.r = fract->val->z.r*fract->val->z.r - fract->val->z.i*fract->val->z.i + fract->val->c.r;
-				fract->val->z.i =  2 * fract->val->z.i*tmp + fract->val->c.i;
+				fract->val->z.i =  -2 * fract->val->z.i*tmp + fract->val->c.i;
 				fract->val->i++;
 			}
 			ft_pixel(fract->img->data, fract->val->x, fract->val->y, ft_colorpx(fract));
@@ -54,4 +54,3 @@ int	ft_mandelbrot(t_fract *fract)
 	ft_imgdel(fract);
 	return(0);
 }
-
