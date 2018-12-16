@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 20:20:26 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/16 03:35:15 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/16 19:14:33 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef	struct		s_manda
 {
 	double			ym;
 	double			xm;
+	int				j;
 	int				color;
 	double			imax;
 	double			zoom;

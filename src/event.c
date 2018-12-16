@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 02:03:42 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/16 03:36:37 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/16 19:12:35 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int		ft_scroll(int s, int x, int y, t_fract *fract)
 
 	mouse[0] = (double)x / fract->mna->zoom + fract->val->xmin;
 	mouse[1] = (double)y / fract->mna->zoom + fract->val->ymin;
+	if (s == 1 && fract->fct == JNBR)
+		fract->mna->j += 1;
 	if (s == SCROLL_A)
 	{
 		fract->mna->zoom *= 1.2;
@@ -46,7 +48,7 @@ int		ft_scroll(int s, int x, int y, t_fract *fract)
 
 int ft_mouse(int x, int y, t_fract *fract)
 {
-	if (fract->fct == JNBR)
+	if (fract->fct == JNBR && (fract->mna->j % 2) == 0)
 	{
 		fract->mna->xm = (double)(x - DWIN_WIDTH) / WIN_WIDTH * (fract->val->xmin);
 		fract->mna->ym = (double)(y - DWIN_HEIGHT) / WIN_HEIGHT * (fract->val->ymin);
@@ -81,6 +83,7 @@ void	ft_initval(t_fract *fract)
 	fract->mna->zoom = 250;
 	fract->mna->imax = 50;
 	fract->mna->color = 0;
+	fract->mna->j = 0;
 	if (fract->fct == MNBR  || fract->fct == TNBR)
 	{
 		fract->val->xmin = - 2.3;
