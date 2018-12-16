@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:46:14 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/13 14:01:49 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/16 02:50:39 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	ft_mandelbrot(t_fract *fract)
 	{
 		while(fract->val->y < WIN_HEIGHT)
 		{
-			fract->val->c.r = fract->val->x / fract->mna->zoom  + fract->val->xmin + fract->mna->x;
-			fract->val->c.i = fract->val->y / fract->mna->zoom  + fract->val->ymin - fract->mna->y;
+			fract->val->c.r = (fract->val->x / fract->mna->zoom) + fract->val->xmin;
+			fract->val->c.i = (fract->val->y / fract->mna->zoom) + fract->val->ymin;
 			fract->val->z.r = 0;
 			fract->val->z.i = 0;
 			fract->val->i =	0;
@@ -46,4 +46,3 @@ int	ft_mandelbrot(t_fract *fract)
 	ft_imgdel(fract);
 	return(0);
 }
-

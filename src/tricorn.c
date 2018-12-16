@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 23:48:56 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/13 14:01:43 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/16 02:39:09 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,14 @@ int	ft_tricorn(t_fract *fract)
 {
 	if (ft_inimg(fract) == 1)
 		return (1);
-	/////////////////////////// pas touche;
-	// fract->val->xmin = -2.1 + fract->mna->x;
-	// fract->val->xmax = 0.6 - fract->mna->x;
-	// fract->val->ymin = -1.4 - fract->mna->y;
-	// fract->val->ymax = 1.2  + fract->mna->y;
-
 	fract->val->x = 0;
 	fract->val->y = 0;
 	while(fract->val->x < WIN_WIDTH)
 	{
 		while(fract->val->y < WIN_HEIGHT)
 		{
-			fract->val->c.r = fract->val->x / fract->mna->zoom  + fract->val->xmin + fract->mna->x;
-			fract->val->c.i = fract->val->y / fract->mna->zoom  + fract->val->ymin - fract->mna->y;
+			fract->val->c.r = fract->val->x / fract->mna->zoom  + fract->val->xmin;
+			fract->val->c.i = fract->val->y / fract->mna->zoom  + fract->val->ymin;
 			fract->val->z.r = 0;
 			fract->val->z.i = 0;
 			fract->val->i =	0;
@@ -48,8 +42,6 @@ int	ft_tricorn(t_fract *fract)
 		fract->val->x++;
 		fract->val->y = 0;
 	}
-
-	/////////////////////////// pas touche;
 	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->img->img_ptr, 0, 0);
 	ft_imgdel(fract);
 	return(0);

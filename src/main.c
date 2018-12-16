@@ -6,14 +6,13 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 18:31:48 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/13 17:45:54 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/14 01:05:41 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfractol.h"
 
-
-int ft_findft(t_fract *fract)
+int		ft_expose(t_fract *fract)
 {
 	if (fract->fct == MNBR)
 		return(ft_mandelbrot(fract));
@@ -57,8 +56,9 @@ int	main(int argc, char **argv)
 
 	ft_help();
 	ft_initval(fract);
-	ft_findft(fract);
+	ft_expose(fract);
 	mlx_mouse_hook(fract->win_ptr, ft_scroll, fract);
+	mlx_expose_hook(fract->win_ptr, ft_expose, fract);
 	mlx_key_hook(fract->win_ptr, ft_key, fract);
 	mlx_hook(fract->win_ptr, 6, 1L << 6, ft_mouse, fract);
 	mlx_hook(fract->win_ptr, 17, 0, ft_exit, fract);

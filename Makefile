@@ -6,7 +6,7 @@
 #    By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/07 12:54:37 by dpalombo          #+#    #+#              #
-#    Updated: 2018/12/12 23:51:03 by dpalombo         ###   ########.fr        #
+#    Updated: 2018/12/13 19:52:58 by dpalombo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,9 @@ _IWHITE=$'\x1b[47m
 NAME = fractol
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
+#							For debug : -g
+#							For opt: -O3 -march=native
 
 # ------------------------------------ SRC PROG ------------------------------------
 SRC		= main.c mandelbrot.c julia.c burningship.c event.c colors.c img.c tricorn.c
@@ -67,7 +69,7 @@ INCMLX			= -I minilibx_macos
 LIB_MLX_LINK	= -L minilibx_macos -l mlx -framework OpenGL -framework AppKit
 
 
-# --------------------------------------- RULES -------------------------------------
+# --------------------------------------- RULES -------------------------------------  --lpthread
 
 all: obj $(LIB_MLX) $(LIB_FT) $(NAME)
 

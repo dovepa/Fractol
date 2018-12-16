@@ -6,7 +6,7 @@
 #    By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/14 10:40:54 by dpalombo          #+#    #+#              #
-#    Updated: 2018/11/11 10:02:18 by dpalombo         ###   ########.fr        #
+#    Updated: 2018/12/13 19:15:57 by dpalombo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME = libft.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+#								for opt  -O3 -march=native
+
 SRC=	ft_isspace.c	ft_memchr.c		ft_putnbr.c \
 		ft_strequ.c		ft_strnequ.c	ft_isupper.c \
 		ft_memcmp.c		ft_putnbr_fd.c	ft_striter.c \

@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 02:04:06 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/13 11:47:12 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/16 03:41:32 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,62 +16,55 @@ static int	ft_colornum(int a)
 {
 	int colortab[5];
 
-	colortab[0] = 0x091c36;
-	colortab[1] = PINK;
-	colortab[2] = 0x091c36;
-	colortab[3] = WHITE;
+	colortab[0] = PINK;
+	colortab[1] = RED;
+	colortab[2] = ORANGE;
+	colortab[3] = BLUE;
 	colortab[4] = YELLOW;
 	return (colortab[a]);
 }
 
-static int		ft_pixel_color(int colorstart, int colorend, int i, int imax)
+static int		ft_pixel_color(int colorstart, t_fract *fract)
 {
 	int		r;
 	int		g;
 	int		b;
-	double	dv;
 	int		colorresult;
 
-	if (i == 0)
-		return (colorend);
-	else if (i == imax)
+	if (fract->val->i == 0)
+		return (0x000000);
+	else if (fract->val->i == fract->mna->imax)
 		return (0x000000);
 	else
-		dv = (double)i / imax;
-
-	r = (((int)((colorend >> 16) & 255) + (((int)((colorstart >> 16) & 255)) - ((int)((colorend >> 16) & 255))) * dv));
-	g = (((int)((colorend >> 8) & 255) + \
-	(((int)((colorstart >> 8) & 255)) - ((int)((colorend >> 8) & 255))) * dv));
-	b = (((int)(colorend & 255) + \
-	(((int)(colorstart & 255)) - ((int)(colorend & 255))) * dv));
+		fract->val->i = fract->val->i / fract->mna->imax;
+	r = ((int)((colorstart >> 16) & 255)) * fract->val->i * 2;
+	g = ((int)((colorstart >> 8) & 255)) * fract->val->i * 2;
+	b = ((int)(colorstart & 255)) * fract->val->i * 2;
 	colorresult = r << 16 | g << 8 | b;
 	return (colorresult);
 }
 
-static int		ft_pixel_gr(int colorstart, int colorend, int i, int imax, t_fract *fract)
+static int		ft_pixel_gr(int colorstart, int colorend, t_fract *fract)
 {
 	int		r;
 	int		g;
 	int		b;
 	double	dv;
-	double	sn;
-	int		colorresult;
 
-	sn = i - log(log(fract->val->z.r * fract->val->z.r + fract->val->z.i * fract->val->z.i))/log(2.0);
-	if (i == 0)
+	dv = fract->val->i - log(log(fract->val->z.r * fract->val->z.r + fract->val->z.i * fract->val->z.i))/log(2.0);
+	if (fract->val->i == 0)
 		return (WHITE);
-	else if (sn == imax)
+	else if (dv == fract->mna->imax)
 		return (0x000000);
 	else
-		dv = sn / imax;
+		dv = dv / fract->mna->imax;
 	r = (((int)((colorend >> 16) & 255) + \
 	(((int)((colorstart >> 16) & 255)) - ((int)((colorend >> 16) & 255))) * dv));
 	g = (((int)((colorend >> 8) & 255) + \
 	(((int)((colorstart >> 8) & 255)) - ((int)((colorend >> 8) & 255))) * dv));
 	b = (((int)(colorend & 255) + \
 	(((int)(colorstart & 255)) - ((int)(colorend & 255))) * dv));
-	colorresult = r << 16 | g << 8 | b;
-	return (colorresult);
+	return ((r << 16 | g << 8 | b));
 }
 
 static int ft_multicolor(t_fract *fract)
@@ -91,18 +84,19 @@ static int ft_multicolor(t_fract *fract)
 int ft_colorpx(t_fract *fract)
 {
 
-	if (fract->mna->color < 4)
+	if (fract->mna->color == 0)
 	{
 		if (fract->val->i == fract->mna->imax)
 			return (0x000000);
-		return (ft_pixel_color(ft_colornum(fract->mna->color + 1), \
-		ft_colornum(fract->mna->color), fract->val->i, fract->mna->imax));
+		return (ft_pixel_gr(WHITE, 0x091c36, fract));
 	}
-	if (fract->mna->color == 4)
+	if (fract->mna->color == 1)
+		return (ft_multicolor(fract));
+	if (fract->mna->color < 6)
 	{
 		if (fract->val->i == fract->mna->imax)
 			return (0x000000);
-		return (ft_pixel_gr(WHITE, 0x091c36, fract->val->i, fract->mna->imax, fract));
+		return (ft_pixel_color(ft_colornum(fract->mna->color - 2), fract));
 	}
 	else
 		return (ft_multicolor(fract));

@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 20:20:26 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/13 17:45:17 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/16 03:35:15 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,6 @@ typedef	struct		s_mlximg
 
 typedef	struct		s_manda
 {
-	double			x;
-	double			y;
-	double			xl;
-	double			yl;
-	int				button;
 	double			ym;
 	double			xm;
 	int				color;
@@ -97,8 +92,6 @@ typedef	struct		s_val
 	double			x;
 	double			i;
 	double			xmin;
-	double			xmax;
-	double			ymax;
 	double			ymin;
 	double 			tmp;
 	t_cp			z;
@@ -127,7 +120,7 @@ int	ft_burningship(t_fract *fract);
 int	ft_inimg(t_fract *fract);
 int	ft_imgdel(t_fract *fract);
 int	ft_julia(t_fract *fract);
-int	ft_findft(t_fract *fract);
+int		ft_expose(t_fract *fract);
 int	ft_mandelbrot(t_fract *fract);
 void	ft_pixel(unsigned int *data, int x, int y, unsigned int color);
 int		ft_init(char *title, t_fract *fract);
