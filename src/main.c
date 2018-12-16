@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 18:31:48 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/14 01:05:41 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/16 22:21:12 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,6 @@ int		ft_expose(t_fract *fract)
 	if (fract->fct == TNBR)
 		return(ft_tricorn(fract));
 	return (0);
-}
-
-static void ft_help(void)
-{
-	ft_putendl("HELP FOR FRACTOL");
-	ft_putendl("For zoom : - and +");
-	ft_putendl("and Scroll wheel");
-	ft_putendl("Change Iteration : q(-) and w(+)");
-	ft_putendl("Move : Use arrow");
-	ft_putendl("Quit : Esc");
-	return;
 }
 
 int	main(int argc, char **argv)
@@ -53,8 +42,6 @@ int	main(int argc, char **argv)
 
 	if (ft_init(argv[1], fract) == 1)
 		return (ft_strerror("\x1b[1m\x1b[41m  --- Mlx init error --- \x1b[0m"));
-
-	ft_help();
 	ft_initval(fract);
 	ft_expose(fract);
 	mlx_mouse_hook(fract->win_ptr, ft_scroll, fract);
