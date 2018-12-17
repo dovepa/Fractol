@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 20:20:26 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/17 16:32:06 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/17 19:14:12 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,18 @@
 # define MNBR			10
 # define BNBR			11
 # define TNBR			7
-# define THREADNBR		80
 # define C(x)			(char)(x)
 # define D(x)			(double)(x)
 # define I(x)			(int)(x)
 # define V(x)			(void)(x)
 # define VS(x)			(void *)(x)
+# define THREADNBR		8
+
+/*
+**	beware there is a maximum number of
+**	threads allocated by the mac and by WIN_HEIGHT
+*/
+
 
 /*
 **	Keyboard and Colors

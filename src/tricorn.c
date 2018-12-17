@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 23:48:56 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/17 16:32:46 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/17 19:13:17 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_tricorn(t_thread *tmp)
 	t_val val;
 
 	val.y = WIN_HEIGHT / THREADNBR * tmp->id;
-	while(val.y < WIN_HEIGHT / THREADNBR * (tmp->id + 1))
+	while (val.y < WIN_HEIGHT / THREADNBR * (tmp->id + 1))
 	{
 		val.x = 0;
 		while(val.x < WIN_WIDTH)
