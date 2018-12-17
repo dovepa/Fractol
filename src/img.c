@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 11:52:55 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/16 03:36:26 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/17 15:40:19 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,7 @@ t_fract		*ft_infract(t_fract *fract)
 {
 	if ((fract = ft_memalloc(sizeof(t_fract))) == NULL)
 		return (NULL);
-	if ((fract->val = (t_val *)ft_memalloc(sizeof(t_val))) == NULL)
-		return (NULL);
 	fract->fct = 0;
-	fract->val->x = 0;
-	fract->val->y = 0;
 	return (fract);
 }
 

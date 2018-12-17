@@ -6,43 +6,39 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 01:59:11 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/16 02:39:26 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/17 15:27:51 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfractol.h"
 
-int	ft_burningship(t_fract *fract)
+void	ft_burningship(t_thread *tmp)
 {
-	if (ft_inimg(fract) == 1)
-		return (1);
-	fract->val->x = 0;
-	fract->val->y = 0;
-	while(fract->val->x < WIN_WIDTH)
-	{
-		while(fract->val->y < WIN_HEIGHT)
-		{
-			fract->val->c.r = fract->val->x / fract->mna->zoom  + fract->val->xmin;
-			fract->val->c.i = fract->val->y / fract->mna->zoom  + fract->val->ymin;
-			fract->val->z.r = 0;
-			fract->val->z.i = 0;
-			fract->val->i =	0;
+	t_val val;
 
-			while (fract->val->z.r*fract->val->z.r + fract->val->z.i*fract->val->z.i < 4 && \
-			fract->val->i < fract->mna->imax )
+	val.y = WIN_HEIGHT / THREADS * tmp->id;
+	while (val.y < WIN_HEIGHT / THREADS * (tmp->id + 1))
+	{
+		val.x = 0;
+		while(val.x < WIN_WIDTH)
+		{
+			val.c.r = (val.x / tmp->fract->mna->zoom) + tmp->fract->mna->xmin;
+			val.c.i = (val.y / tmp->fract->mna->zoom) + tmp->fract->mna->ymin;
+			val.z.r = 0;
+			val.z.i = 0;
+			val.i =	0;
+			while (val.z.r * val.z.r + val.z.i * val.z.i < 4 && \
+			val.i < tmp->fract->mna->imax )
 			{
-				fract->val->tmp = fract->val->z.r;
-				fract->val->z.r = fract->val->z.r*fract->val->z.r - fract->val->z.i*fract->val->z.i + fract->val->c.r;
-				fract->val->z.i = 2* fabsl(fract->val->z.i* fract->val->tmp) + fract->val->c.i;
-				fract->val->i++;
+				val.tmp = val.z.r;
+				val.z.r = val.z.r * val.z.r - val.z.i * val.z.i + val.c.r;
+				val.z.i =  2 * fabsl(val.z.i * val.tmp) + val.c.i;
+				val.i++;
 			}
-			ft_pixel(fract->img->data, fract->val->x, fract->val->y, ft_colorpx(fract));
-			fract->val->y++;
+			ft_pixel(tmp->fract->img->data, val.x, val.y, ft_colorpx(tmp->fract, val));
+			val.x++;
 		}
-		fract->val->x++;
-		fract->val->y = 0;
+		val.y++;
 	}
-	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->img->img_ptr, 0, 0);
-	ft_imgdel(fract);
-	return (0);
+	return ;
 }

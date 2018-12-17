@@ -6,23 +6,41 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 18:31:48 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/16 22:21:12 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/17 15:43:13 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfractol.h"
 
-int		ft_expose(t_fract *fract)
+int	ft_expose(t_fract *fract)
 {
-	if (fract->fct == MNBR)
-		return(ft_mandelbrot(fract));
-	if (fract->fct == JNBR)
-		return(ft_julia(fract));
-	if (fract->fct == BNBR)
-		return(ft_burningship(fract));
-	if (fract->fct == TNBR)
-		return(ft_tricorn(fract));
+	ft_thread(fract);
 	return (0);
+}
+
+void	ft_initval(t_fract *fract)
+{
+	fract->mna->zoom = 250;
+	fract->mna->imax = 50;
+	fract->mna->color = 0;
+	fract->mna->j = 0;
+	if (fract->fct == MNBR  || fract->fct == TNBR)
+	{
+		fract->mna->xmin = - 2.3;
+		fract->mna->ymin = - 1.6;
+	}
+	else if (fract->fct == BNBR)
+	{
+		fract->mna->xmin = - 2.4;
+		fract->mna->ymin = - 2.2;
+	}
+	else if (fract->fct == JNBR)
+	{
+		fract->mna->xmin = - 2;
+		fract->mna->ymin = - 1.6;
+	}
+	ft_expose(fract);
+	return ;
 }
 
 int	main(int argc, char **argv)
