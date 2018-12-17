@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 11:14:07 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/17 15:43:49 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/17 16:32:15 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,21 @@ static void *ft_fct(void *fract)
 int	ft_thread(t_fract *fract)
 {
 	int			i;
-	t_render	*r;
 
 	if (ft_inimg(fract) == 1)
 		return (1);
 	i = 0;
-	r = &fract->render;
-	while (i < THREADS)
+	while (i < THREADNBR)
 	{
-		r->args[i].id = i;
-		r->args[i].fract = fract;
-		pthread_create(r->threads + i, NULL, ft_fct, &(r->args[i]));
+		fract->thbase[i].id = i;
+		fract->thbase[i].fract = fract;
+		pthread_create(fract->thread + i, NULL, ft_fct, &(fract->thbase[i]));
 		i++;
 	}
 	i = 0;
-	while (i < THREADS)
+	while (i < THREADNBR)
 	{
-		pthread_join(r->threads[i], NULL);
+		pthread_join(fract->thread[i], NULL);
 		i++;
 	}
 	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->img->img_ptr, 0, 0);

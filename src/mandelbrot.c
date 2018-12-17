@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 11:46:14 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/17 14:26:50 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/17 16:32:39 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void ft_mandelbrot(t_thread *tmp)
 {
 	t_val val;
 
-	val.y = WIN_HEIGHT / THREADS * tmp->id;
-	while (val.y < WIN_HEIGHT / THREADS * (tmp->id + 1))
+	val.y = WIN_HEIGHT / THREADNBR * tmp->id;
+	while (val.y < WIN_HEIGHT / THREADNBR * (tmp->id + 1))
 	{
 		val.x = 0;
 		while(val.x < WIN_WIDTH)

@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 22:54:58 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/17 15:36:42 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/17 16:32:33 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_julia(t_thread *tmp)
 {
 	t_val val;
 
-	val.y = WIN_HEIGHT / THREADS * tmp->id;
-	while (val.y < WIN_HEIGHT / THREADS * (tmp->id + 1))
+	val.y = WIN_HEIGHT / THREADNBR * tmp->id;
+	while (val.y < WIN_HEIGHT / THREADNBR * (tmp->id + 1))
 	{
 		val.x = 0;
 		while(val.x < WIN_WIDTH)

@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 20:20:26 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/17 15:45:57 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/17 16:32:06 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define MNBR			10
 # define BNBR			11
 # define TNBR			7
-# define THREADS		80
+# define THREADNBR		80
 # define C(x)			(char)(x)
 # define D(x)			(double)(x)
 # define I(x)			(int)(x)
@@ -113,15 +113,10 @@ typedef struct		s_thread
 	t_fract			*fract;
 }					t_thread;
 
-typedef struct		s_render
-{
-	pthread_t		threads[THREADS];
-	t_thread		args[THREADS];
-}					t_render;
-
 struct				s_fract
 {
-	t_render		render;
+	pthread_t		thread[THREADNBR];
+	t_thread		thbase[THREADNBR];
 	int				fct;
 	t_manda			*mna;
 	void			*mlx_ptr;
