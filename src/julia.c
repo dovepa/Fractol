@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 22:54:58 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/17 19:13:27 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/18 08:34:46 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ void	ft_julia(t_thread *tmp)
 		val.x = 0;
 		while(val.x < WIN_WIDTH)
 		{
-			val.c.r = tmp->fract->mna->xm;
-			val.c.i = tmp->fract->mna->ym;
-			val.z.r = (val.x / tmp->fract->mna->zoom) + tmp->fract->mna->xmin;
-			val.z.i = (val.y / tmp->fract->mna->zoom) + tmp->fract->mna->ymin;
+			val.c.r = tmp->mna->xm;
+			val.c.i = tmp->mna->ym;
+			val.z.r = (val.x / tmp->mna->zoom) + tmp->mna->xmin;
+			val.z.i = (val.y / tmp->mna->zoom) + tmp->mna->ymin;
 			val.i =	0;
 			while (val.z.r * val.z.r + val.z.i * val.z.i < 4 && \
-			val.i < tmp->fract->mna->imax )
+			val.i < tmp->mna->imax )
 			{
 				val.tmp = val.z.r;
 				val.z.r = val.z.r * val.z.r - val.z.i * val.z.i + val.c.r;
 				val.z.i =  2 * val.z.i * val.tmp + val.c.i;
 				val.i++;
 			}
-			ft_pixel(tmp->fract->img->data, val.x, val.y, ft_colorpx(tmp->fract, val));
+			ft_pixel(tmp->img->data, val.x, val.y, ft_colorpx(tmp->mna, val));
 			val.x++;
 		}
 		val.y++;

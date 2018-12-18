@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 20:20:26 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/17 19:14:12 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/18 08:58:20 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef	struct		s_manda
 	double			zoom;
 	double			xmin;
 	double			ymin;
+	int				fct;
 
 }					t_manda;
 
@@ -111,15 +112,15 @@ typedef	struct		s_val
 	t_cp			c;
 }					t_val;
 
-typedef struct s_fract t_fract;
 
 typedef struct		s_thread
 {
 	int				id;
-	t_fract			*fract;
+	t_manda			*mna;
+	t_mlximg		*img;
 }					t_thread;
 
-struct				s_fract
+typedef struct		s_fract
 {
 	pthread_t		thread[THREADNBR];
 	t_thread		thbase[THREADNBR];
@@ -128,14 +129,14 @@ struct				s_fract
 	void			*mlx_ptr;
 	void			*win_ptr;
 	t_mlximg		*img;
-};
+}					t_fract;
 
 
 /*
 **	Functions
 */
 
-void		ft_mandelbrot(t_thread *t);
+void		ft_mandelbrot(t_thread *tmp);
 void		ft_tricorn(t_thread *tmp);
 void		ft_burningship(t_thread *tmp);
 void		ft_julia(t_thread *tmp);
@@ -160,7 +161,7 @@ void		ft_initval(t_fract *fract);
 **	colors.c
 */
 
-int			ft_colorpx(t_fract *fract, t_val val);
+int			ft_colorpx(t_manda *mna, t_val val);
 void		ft_pixel(unsigned int *data, int x, int y, unsigned int color);
 
 /*

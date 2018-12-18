@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 02:03:42 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/17 15:43:19 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/18 08:32:42 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_scroll(int s, int x, int y, t_fract *fract)
 
 	mouse[0] = D(x) / fract->mna->zoom + fract->mna->xmin;
 	mouse[1] = D(y) / fract->mna->zoom + fract->mna->ymin;
-	if (s == 1 && fract->fct == JNBR)
+	if (s == 1 && fract->mna->fct == JNBR)
 		fract->mna->j += 1;
 	if (s == SCROLL_A)
 	{
@@ -48,7 +48,7 @@ int		ft_scroll(int s, int x, int y, t_fract *fract)
 
 int ft_mouse(int x, int y, t_fract *fract)
 {
-	if (fract->fct == JNBR && (fract->mna->j % 2) == 0)
+	if (fract->mna->fct == JNBR && (fract->mna->j % 2) == 0)
 	{
 		fract->mna->xm = D((x - DWIN_WIDTH)) / WIN_WIDTH * (fract->mna->xmin);
 		fract->mna->ym = D((y - DWIN_HEIGHT)) / WIN_HEIGHT * (fract->mna->ymin);

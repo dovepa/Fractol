@@ -6,24 +6,24 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 11:14:07 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/17 19:13:04 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/18 08:51:42 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfractol.h"
 
-static void *ft_fct(void *fract)
+static void *ft_fct(void *base)
 {
 	t_thread	*tmp;
 
-	tmp = (t_thread *)fract;
-	if (tmp->fract->fct == MNBR)
+	tmp = (t_thread *)base;
+	if (tmp->mna->fct == MNBR)
 		ft_mandelbrot(tmp);
-	if (tmp->fract->fct == JNBR)
+	if (tmp->mna->fct == JNBR)
 		ft_julia(tmp);
-	if (tmp->fract->fct == BNBR)
+	if (tmp->mna->fct == BNBR)
 		ft_burningship(tmp);
-	if (tmp->fract->fct == TNBR)
+	if (tmp->mna->fct == TNBR)
 		ft_tricorn(tmp);
 	return NULL;
 }
@@ -32,13 +32,15 @@ int	ft_thread(t_fract *fract)
 {
 	int			i;
 
+	fract->mna->fct = fract->fct;
 	if (ft_inimg(fract) == 1)
 		return (1);
 	i = 0;
 	while (i < THREADNBR)
 	{
 		fract->thbase[i].id = i;
-		fract->thbase[i].fract = fract;
+		fract->thbase[i].mna = fract->mna;
+		fract->thbase[i].img = fract->img;
 		pthread_create(fract->thread + i, NULL, ft_fct, &(fract->thbase[i]));
 		i++;
 	}
