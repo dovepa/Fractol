@@ -6,7 +6,7 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/03 18:31:48 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/18 12:01:20 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/18 12:11:23 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		main(int argc, char **argv)
 	|| (ft_strcmp((const char*)argv[1], (const char*)"tricorn") == 0)))
 		fract->fct = ft_strlen((const char*)argv[1]);
 	else
-		return (ft_usage("./fractol :julia /mandelbrot /burningship /tricorn"));
+		return (ft_usage("./fractol : julia mandelbrot burningship tricorn"));
 	if (ft_init(argv[1], fract) == 1)
 		return (ft_strerror("\x1b[1m\x1b[41m  --- Mlx init error --- \x1b[0m"));
 	ft_initval(fract);
