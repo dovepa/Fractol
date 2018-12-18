@@ -6,11 +6,19 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 11:52:55 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/18 08:33:16 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/18 11:41:04 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfractol.h"
+
+void	ft_pixel(unsigned int *data, int x, int y, unsigned int color)
+{
+	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
+		return ;
+	data[y * WIN_WIDTH + x] = color;
+	return ;
+}
 
 int		ft_imgdel(t_fract *fract)
 {
@@ -23,7 +31,7 @@ int		ft_imgdel(t_fract *fract)
 	return (1);
 }
 
-t_fract		*ft_infract(t_fract *fract)
+t_fract	*ft_infract(t_fract *fract)
 {
 	if ((fract = ft_memalloc(sizeof(t_fract))) == NULL)
 		return (NULL);

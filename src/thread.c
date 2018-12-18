@@ -6,13 +6,13 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 11:14:07 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/18 08:51:42 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/18 12:02:21 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfractol.h"
 
-static void *ft_fct(void *base)
+static void	*ft_fct(void *base)
 {
 	t_thread	*tmp;
 
@@ -25,10 +25,10 @@ static void *ft_fct(void *base)
 		ft_burningship(tmp);
 	if (tmp->mna->fct == TNBR)
 		ft_tricorn(tmp);
-	return NULL;
+	return (NULL);
 }
 
-int	ft_thread(t_fract *fract)
+int			ft_thread(t_fract *fract)
 {
 	int			i;
 
@@ -50,7 +50,8 @@ int	ft_thread(t_fract *fract)
 		pthread_join(fract->thread[i], NULL);
 		i++;
 	}
-	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr, fract->img->img_ptr, 0, 0);
+	mlx_put_image_to_window(fract->mlx_ptr, fract->win_ptr,\
+	fract->img->img_ptr, 0, 0);
 	ft_imgdel(fract);
 	return (1);
 }

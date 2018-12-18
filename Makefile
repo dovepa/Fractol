@@ -6,7 +6,7 @@
 #    By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/07 12:54:37 by dpalombo          #+#    #+#              #
-#    Updated: 2018/12/17 15:30:27 by dpalombo         ###   ########.fr        #
+#    Updated: 2018/12/18 12:08:08 by dpalombo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,6 @@ NAME = fractol
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-#							For debug : -g
-#							For opt: -O3 -march=native
 
 # ------------------------------------ SRC PROG ------------------------------------
 SRC		= main.c mandelbrot.c event.c colors.c img.c thread.c tricorn.c burningship.c julia.c

@@ -6,16 +6,16 @@
 /*   By: dpalombo <dpalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 20:20:26 by dpalombo          #+#    #+#             */
-/*   Updated: 2018/12/18 08:58:20 by dpalombo         ###   ########.fr       */
+/*   Updated: 2018/12/18 11:31:19 by dpalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_FRACTOL
-# define LIB_FRACTOL
+#ifndef LIBFRACTOL_H
+# define LIBFRACTOL_H
 
-#include "libft.h"
-#include "mlx.h"
-#include <math.h>
+# include "libft.h"
+# include "mlx.h"
+# include <math.h>
 # include <pthread.h>
 
 /*
@@ -40,9 +40,8 @@
 
 /*
 **	beware there is a maximum number of
-**	threads allocated by the mac and by WIN_HEIGHT
+**	threads allocated by the OS and by WIN_HEIGHT
 */
-
 
 /*
 **	Keyboard and Colors
@@ -73,111 +72,109 @@
 **	Structures
 */
 
-typedef	struct		s_cp
+typedef	struct			s_cp
 {
-	double			i;
-	double			r;
-}					t_cp;
+	double				i;
+	double				r;
+}						t_cp;
 
-typedef	struct		s_mlximg
+typedef	struct			s_mlximg
 {
-	void			*img_ptr;
-	unsigned int	*data;
-	int				size_l;
-	int				bpp;
-	int				endian;
-}					t_mlximg;
+	void				*img_ptr;
+	unsigned int		*data;
+	int					size_l;
+	int					bpp;
+	int					endian;
+}						t_mlximg;
 
-typedef	struct		s_manda
+typedef	struct			s_manda
 {
-	double			ym;
-	double			xm;
-	int				j;
-	int				color;
-	double			imax;
-	double			zoom;
-	double			xmin;
-	double			ymin;
-	int				fct;
+	double				ym;
+	double				xm;
+	int					j;
+	int					color;
+	double				imax;
+	double				zoom;
+	double				xmin;
+	double				ymin;
+	int					fct;
+}						t_manda;
 
-}					t_manda;
-
-typedef	struct		s_val
+typedef	struct			s_val
 {
-	double			y;
-	double			x;
-	double			i;
-	double 			tmp;
-	t_cp			z;
-	t_cp			c;
-}					t_val;
+	double				y;
+	double				x;
+	double				i;
+	double				tmp;
+	t_cp				z;
+	t_cp				c;
+}						t_val;
 
-
-typedef struct		s_thread
+typedef struct			s_thread
 {
-	int				id;
-	t_manda			*mna;
-	t_mlximg		*img;
-}					t_thread;
+	int					id;
+	t_manda				*mna;
+	t_mlximg			*img;
+}						t_thread;
 
-typedef struct		s_fract
+typedef struct			s_fract
 {
-	pthread_t		thread[THREADNBR];
-	t_thread		thbase[THREADNBR];
-	int				fct;
-	t_manda			*mna;
-	void			*mlx_ptr;
-	void			*win_ptr;
-	t_mlximg		*img;
-}					t_fract;
-
+	pthread_t			thread[THREADNBR];
+	t_thread			thbase[THREADNBR];
+	int					fct;
+	t_manda				*mna;
+	void				*mlx_ptr;
+	void				*win_ptr;
+	t_mlximg			*img;
+}						t_fract;
 
 /*
 **	Functions
 */
 
-void		ft_mandelbrot(t_thread *tmp);
-void		ft_tricorn(t_thread *tmp);
-void		ft_burningship(t_thread *tmp);
-void		ft_julia(t_thread *tmp);
+void					ft_mandelbrot(t_thread *tmp);
+void					ft_tricorn(t_thread *tmp);
+void					ft_burningship(t_thread *tmp);
+void					ft_julia(t_thread *tmp);
 
 /*
 **	img.c
 */
 
-int			ft_imgdel(t_fract *fract);
-t_fract		*ft_infract(t_fract *fract);
-int			ft_inimg(t_fract *fract);
-int			ft_init(char *title, t_fract *fract);
+int						ft_imgdel(t_fract *fract);
+t_fract					*ft_infract(t_fract *fract);
+int						ft_inimg(t_fract *fract);
+int						ft_init(char *title, t_fract *fract);
 
 /*
 **	main.c
 */
 
-int			ft_expose(t_fract *fract);
-void		ft_initval(t_fract *fract);
+int						ft_expose(t_fract *fract);
+void					ft_initval(t_fract *fract);
 
 /*
 **	colors.c
 */
 
-int			ft_colorpx(t_manda *mna, t_val val);
-void		ft_pixel(unsigned int *data, int x, int y, unsigned int color);
+int						ft_colorpx(t_manda *mna, t_val val);
+void					ft_pixel(unsigned int *data, int x, int y, \
+unsigned int color);
 
 /*
 **	event.c
 */
 
-int 		ft_exit(t_fract *fract);
-int			ft_scroll(int s, int x, int y, t_fract *fract);
-int			ft_mouse(int x, int y, t_fract *fract);
-int			ft_key(int key, t_fract *fract);
-int			ft_movearrow(int key, t_fract *fract);
+int						ft_exit(t_fract *fract);
+int						ft_scroll(int s, int x, int y, t_fract *fract);
+int						ft_mouse(int x, int y, t_fract *fract);
+int						ft_key(int key, t_fract *fract);
+int						ft_movearrow(int key, t_fract *fract);
 
 /*
 **	thread.c
 */
 
-int			ft_thread(t_fract *fract);
+int						ft_thread(t_fract *fract);
 
 #endif
